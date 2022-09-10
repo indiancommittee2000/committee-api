@@ -10,7 +10,12 @@ app.use(express.json());
 app.use('/api/member', memberRoutes);
 app.use('/api/committee', committeeRoutes);
 app.use('/api/transaction', transactionRoutes);
-
+app.use('/', (req,res) => {
+    res.json({
+        success:1,
+        message:"welcome to committee api"
+    });
+});
 
 app.use('*', (req, res) => {
     res.json({
@@ -20,4 +25,4 @@ app.use('*', (req, res) => {
 });
 
 
-app.listen(process.env.APP_PORT, () => console.log('Server is running on port ' + process.env.APP_PORT));
+app.listen(process.env.PORT || 3000, () => console.log('Server is running on port ' + process.env.APP_PORT));
