@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require('express');
+const sls = require('serverless-http')
 const app = express();
 const memberRoutes = require("./api/member/member.router");
 const committeeRoutes = require("./api/committee/committee.router");
@@ -25,4 +26,5 @@ app.use('*', (req, res) => {
 });
 
 
-app.listen(process.env.PORT || 3000, () => console.log('Server is running on port ' + process.env.APP_PORT));
+// app.listen(process.env.PORT || 3000, () => console.log('Server is running on port ' + process.env.APP_PORT));
+module.exports.server = sls(app)
